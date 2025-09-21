@@ -1,7 +1,8 @@
 {
   "name": "Loan Calculator",
   "short_name": "Calculator",
-  "start_url": "/loan-calculator/index.html",
+  "start_url": "./index.html",
+  "scope": "./",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#00BCD4",
