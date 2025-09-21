@@ -92,6 +92,7 @@
     </div>
 
     <div id="monthlyInstallment" class="result-box">S$0</div>
+    <div id="dailyInstallment" class="result-box">Daily: S$0</div>
     <div id="downPaymentResult" class="result-box">Downpayment: S$0 (0%)</div>
     <div id="balanceResult" class="result-box">Loan Amount: S$0</div>
   </section>
@@ -114,6 +115,7 @@ function getLoanReportText() {
   const interestRate = document.getElementById('interestRate').value;
   const loanTerm = document.getElementById('loanTerm').value;
   const monthly = document.getElementById('monthlyInstallment').innerText;
+  const daily = document.getElementById('dailyInstallment') ? document.getElementById('dailyInstallment').innerText : 'Daily: S$0';
   const dpResult = document.getElementById('downPaymentResult').innerText;
   const balanceResult = document.getElementById('balanceResult').innerText;
   const customerName = document.getElementById('customerName').value;
@@ -143,6 +145,7 @@ Interest Rate: ${interestRate}%
 Loan Term: ${loanTerm} months
 
 ${monthly}
+${daily}
 ${dpResult}
 ${balanceResult}
 
@@ -163,7 +166,8 @@ function calculateMonthly() {
   let months = parseInt(document.getElementById('loanTerm').value)||0;
 
   if (carPrice<=0||months<=0) {
-    document.getElementById('monthlyInstallment').innerText="S$0"; 
+    document.getElementById('monthlyInstallment').innerText="S$0";
+    document.getElementById('dailyInstallment').innerText="Daily: S$0"; 
     document.getElementById('downPaymentResult').innerText="Downpayment: S$0 (0%)";
     document.getElementById('balanceResult').innerText="Loan Amount: S$0";
     return;
@@ -183,6 +187,7 @@ function calculateMonthly() {
   let payment = Math.ceil(principal+interest);
 
   document.getElementById('monthlyInstallment').innerText="Monthly: S$"+payment.toLocaleString();
+  document.getElementById('dailyInstallment').innerText="Daily: S$"+Math.ceil(payment/30).toLocaleString();
   document.getElementById('downPaymentResult').innerText="Downpayment: S$"+downPayment.toLocaleString()+" ("+dpPercent+"%)";
   document.getElementById('balanceResult').innerText="Loan Amount: S$"+loan.toLocaleString();
 }
@@ -191,6 +196,7 @@ document.getElementById('clearBtn').onclick=function(){
   ['carPrice','tradeIn','outstandingLoan','downPayment','manualDownPayment'].forEach(id=>document.getElementById(id).value=0);
   document.getElementById('interestRate').value=2.5; document.getElementById('loanTerm').value=60;
   document.getElementById('monthlyInstallment').innerText="S$0";
+    document.getElementById('dailyInstallment').innerText="Daily: S$0";
   document.getElementById('downPaymentResult').innerText="Downpayment: S$0 (0%)";
   document.getElementById('balanceResult').innerText="Loan Amount: S$0";
 };
