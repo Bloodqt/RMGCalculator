@@ -1,7 +1,7 @@
 {
   "name": "Loan Calculator",
   "short_name": "Calculator",
-  "start_url": "loan_calculator_with_logo_v6.html",
+  "start_url": "/loan-calculator/index.html",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#00BCD4",
