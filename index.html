@@ -25,24 +25,11 @@
 
   /* Responsive tweaks for mobile */
   @media (max-width: 600px) {
-    .form-grid {
-      grid-template-columns: 1fr; /* stack fields */
-    }
-    .actions {
-      flex-direction: column; /* stack buttons */
-    }
-    .actions button, .actions a {
-      width: 100%;
-      font-size: 16px;
-      padding: 14px;
-    }
-    label {
-      font-size: 16px;
-    }
-    input {
-      font-size: 16px;
-      padding: 12px;
-    }
+    .form-grid { grid-template-columns: 1fr; }
+    .actions { flex-direction: column; }
+    .actions button, .actions a { width: 100%; font-size: 16px; padding: 14px; }
+    label { font-size: 16px; }
+    input { font-size: 16px; padding: 12px; }
   }
 </style>
 
@@ -59,7 +46,7 @@
   <section class="card">
     <!-- Logo + Header -->
     <div style="display:flex; align-items:center; gap:12px; margin-bottom:10px;">
-      <img id="companyLogo" alt="Company Logo" style="height:40px;">
+      <img id="companyLogo" src="icon-192.png" alt="Company Logo" style="height:40px;">
       <h2 style="margin:0;">Loan Calculator</h2>
     </div>
 
@@ -97,10 +84,6 @@
 </div>
 
 <script>
-// Optimized Base64-encoded logo (PNG)
-const base64Logo = ""; // your existing base64 logo stays here
-document.getElementById("companyLogo").src = base64Logo;
-
 document.getElementById("calcBtn").addEventListener("click", () => {
   const carPrice = parseFloat(document.getElementById("carPrice").value) || 0;
   const tradeIn = parseFloat(document.getElementById("tradeIn").value) || 0;
@@ -110,7 +93,6 @@ document.getElementById("calcBtn").addEventListener("click", () => {
   const interestRate = parseFloat(document.getElementById("interestRate").value) || 0;
   const loanTerm = parseFloat(document.getElementById("loanTerm").value) || 0;
 
-  // Adjust car price based on trade-in vs outstanding
   let adjustedCarPrice = carPrice;
   if (tradeIn > outstandingLoan) {
     adjustedCarPrice -= (tradeIn - outstandingLoan);
@@ -118,30 +100,61 @@ document.getElementById("calcBtn").addEventListener("click", () => {
     adjustedCarPrice += (outstandingLoan - tradeIn);
   }
 
-  // Calculate downpayment
   let downPayment = (downPaymentPercent > 0) 
     ? (adjustedCarPrice * (downPaymentPercent / 100)) 
     : manualDownPayment;
-
-  if (manualDownPayment > 0) {
-    downPayment = manualDownPayment;
-  }
+  if (manualDownPayment > 0) downPayment = manualDownPayment;
 
   const loanAmount = adjustedCarPrice - downPayment;
-
-  // Monthly installment formula
   const monthlyInstallment = Math.ceil(
     (loanAmount * (interestRate / 100) / 12 * loanTerm + loanAmount) / loanTerm
   );
-
-  // Daily installment (monthly / 30)
   const dailyInstallment = Math.ceil(monthlyInstallment / 30);
 
-  // Update UI
   document.getElementById("monthlyInstallment").textContent = "Monthly: S$" + monthlyInstallment.toLocaleString();
   document.getElementById("dailyInstallment").textContent = "Daily: S$" + dailyInstallment.toLocaleString();
   document.getElementById("downPaymentResult").textContent = "Downpayment: S$" + downPayment.toLocaleString() + " (" + downPaymentPercent + "%)";
   document.getElementById("balanceResult").textContent = "Loan Amount: S$" + loanAmount.toLocaleString();
+
+  const customerName = document.getElementById("customerName").value || "Customer";
+  const message = 
+    `Loan Calculation Report for ${customerName}\n\n` +
+    `Car Price: S$${carPrice.toLocaleString()}\n` +
+    `Loan Amount: S$${loanAmount.toLocaleString()}\n` +
+    `Downpayment: S$${downPayment.toLocaleString()} (${downPaymentPercent}%)\n` +
+    `Monthly: S$${monthlyInstallment.toLocaleString()}\n` +
+    `Daily: S$${dailyInstallment.toLocaleString()}`;
+  document.getElementById("whatsappBtn").href = "https://wa.me/?text=" + encodeURIComponent(message);
+
+  // ✅ FIXED PDF EXPORT
+  document.getElementById("downloadBtn").onclick = async () => {
+    const { jsPDF } = window.jspdf;
+    const doc = new jsPDF();
+
+    // Load logo and convert to Base64
+    const logo = await fetch("icon-512.png")
+      .then(res => res.blob())
+      .then(blob => new Promise(resolve => {
+        const reader = new FileReader();
+        reader.onload = () => resolve(reader.result);
+        reader.readAsDataURL(blob);
+      }));
+
+    // Add logo and content
+    doc.addImage(logo, "PNG", 14, 10, 25, 25);
+    doc.setFontSize(16);
+    doc.text("Loan Calculation Report", 45, 20);
+
+    doc.setFontSize(12);
+    doc.text("Customer: " + customerName, 14, 50);
+    doc.text("Car Price: S$" + carPrice.toLocaleString(), 14, 60);
+    doc.text("Loan Amount: S$" + loanAmount.toLocaleString(), 14, 70);
+    doc.text("Downpayment: S$" + downPayment.toLocaleString() + " (" + downPaymentPercent + "%)", 14, 80);
+    doc.text("Monthly Installment: S$" + monthlyInstallment.toLocaleString(), 14, 90);
+    doc.text("Daily Installment: S$" + dailyInstallment.toLocaleString(), 14, 100);
+
+    doc.save("loan-calculation-report.pdf");
+  };
 });
 
 document.getElementById("clearBtn").addEventListener("click", () => {
@@ -150,6 +163,7 @@ document.getElementById("clearBtn").addEventListener("click", () => {
   document.getElementById("dailyInstallment").textContent = "Daily: S$0";
   document.getElementById("downPaymentResult").textContent = "Downpayment: S$0 (0%)";
   document.getElementById("balanceResult").textContent = "Loan Amount: S$0";
+  document.getElementById("whatsappBtn").href = "#";
 });
 </script>
 </body>
