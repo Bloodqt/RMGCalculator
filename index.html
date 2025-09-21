@@ -67,13 +67,13 @@
 
     <div class="form-grid">
       <div><label>Customer Name</label><input id="customerName" type="text" placeholder="Enter name"></div>
-      <div><label>Car Price (S$)</label><input id="carPrice" type="number" value="0"></div>
-      <div><label>Trade-in Value (S$)</label><input id="tradeIn" type="number" value="0"></div>
-      <div><label>Outstanding Loan (S$)</label><input id="outstandingLoan" type="number" value="0"></div>
-      <div><label>Downpayment (%)</label><input id="downPayment" type="number" value="0"></div>
-      <div><label>Manual Downpayment (S$)</label><input id="manualDownPayment" type="number" value="0"></div>
-      <div><label>Interest Rate (% p.a.)</label><input id="interestRate" type="number" step="0.01" value="2.5"></div>
-      <div><label>Loan Term (months)</label><input id="loanTerm" type="number" value="60"></div>
+      <div><label>Car Price (S$)</label><input id="carPrice" type="number" value="0" inputmode="numeric" pattern="[0-9]*"></div>
+      <div><label>Trade-in Value (S$)</label><input id="tradeIn" type="number" value="0" inputmode="numeric" pattern="[0-9]*"></div>
+      <div><label>Outstanding Loan (S$)</label><input id="outstandingLoan" type="number" value="0" inputmode="numeric" pattern="[0-9]*"></div>
+      <div><label>Downpayment (%)</label><input id="downPayment" type="number" value="0" inputmode="numeric" pattern="[0-9]*"></div>
+      <div><label>Manual Downpayment (S$)</label><input id="manualDownPayment" type="number" value="0" inputmode="numeric" pattern="[0-9]*"></div>
+      <div><label>Interest Rate (% p.a.)</label><input id="interestRate" type="number" step="0.01" value="2.5" inputmode="decimal" pattern="[0-9]*[.,]?[0-9]*"></div>
+      <div><label>Loan Term (months)</label><input id="loanTerm" type="number" value="60" inputmode="numeric" pattern="[0-9]*"></div>
     </div>
 
     <div class="actions">
