@@ -147,38 +147,40 @@
 <script>
 
 const RMG_SPECS = [
-  {id:'mazda3',name:'Mazda 3 1.5L M-Hybrid',fuel:'Hybrid',cons:5.52,tank:51,batt:null},
-  {id:'fit',name:'Honda Fit Petrol 1.5A',fuel:'Petrol',cons:5.7,tank:40,batt:null},
-  {id:'freed',name:'Honda Freed e:HEV',fuel:'Hybrid',cons:3.9,tank:42,batt:null},
-  {id:'nvan',name:'Honda N-Van Fun Style',fuel:'Petrol',cons:5.3,tank:27,batt:null},
-  {id:'odyssey',name:'Honda Odyssey e:HEV 2.0',fuel:'Hybrid',cons:5.0,tank:55,batt:null},
-  {id:'stepwgn',name:'Honda Stepwagon Spada e:HEV 2.0',fuel:'Hybrid',cons:4.9,tank:52,batt:null},
-  {id:'vezel-petrol',name:'Honda Vezel Petrol 1.5G',fuel:'Petrol',cons:6.9,tank:40,batt:null},
-  {id:'vezel-hybrid',name:'Honda Vezel e:HEV 1.5X',fuel:'Hybrid',cons:4.0,tank:40,batt:null},
-  {id:'wrv',name:'Honda WR-V 1.5',fuel:'Petrol',cons:6.1,tank:40,batt:null},
-  {id:'zrv',name:'Honda ZR-V e:HEV',fuel:'Hybrid',cons:4.2,tank:57,batt:null},
-  {id:'lm350h',name:'Lexus LM350h 2.5A',fuel:'Hybrid',cons:6.5,tank:60,batt:null},
-  {id:'glc300',name:'Mercedes GLC300 AMG Line',fuel:'Petrol',cons:7.5,tank:62,batt:null},
-  {id:'mg4',name:'MG 4 EV 99kW',fuel:'EV',cons:null,tank:null,batt:64,energy:16.6},
-  {id:'mg5',name:'MG 5 EV Excite',fuel:'EV',cons:null,tank:null,batt:61.1,energy:17.0},
-  {id:'mgm9',name:'MG M9 EV Trophy (7-Seater)',fuel:'EV',cons:null,tank:null,batt:90,energy:21.8},
-  {id:'mgs5-comfort', name:'MG S5 EV Comfort', fuel:'EV', cons:null, tank:null, batt:62, energy:16.9},
-  {id:'mgs5-luxury', name:'MG S5 EV Luxury', fuel:'EV', cons:null, tank:null, batt:62, energy:16.9},
-  {id:'mgzs',name:'MG ZS EV SE / Trophy',fuel:'EV',cons:null,tank:null,batt:51,energy:17.5},
-  {id:'serena',name:'Nissan Serena 1.4 e-Power',fuel:'Hybrid',cons:5.2,tank:52,batt:null},
-  {id:'landy',name:'Suzuki Landy Hybrid 1.8G',fuel:'Hybrid',cons:4.5,tank:52,batt:null},
-  {id:'alphard-petrol', name:'Toyota Alphard Petrol 2.5Z', fuel:'Petrol', cons:9.5, tank:75, batt:null},
-  {id:'alphard-hybrid', name:'Toyota Alphard Hybrid 2.5Z', fuel:'Hybrid', cons:5.1, tank:60, batt:null},
-  {id:'harrier',name:'Toyota Harrier Hybrid 2.5G',fuel:'Hybrid',cons:4.8,tank:55,batt:null},
-  {id:'noah',name:'Toyota Noah Hybrid 1.8',fuel:'Hybrid',cons:4.4,tank:52,batt:null},
-  {id:'sienta',name:'Toyota Sienta Hybrid 1.5',fuel:'Hybrid',cons:4.0,tank:40,batt:null},
-  {id:'vellfire',name:'Toyota Vellfire Hybrid 2.5Z Premier',fuel:'Hybrid',cons:4.7,tank:60,batt:null},
-  {id:'voxy',name:'Toyota Voxy Hybrid 1.8',fuel:'Hybrid',cons:4.5,tank:52,batt:null},
-  {id:'yaris',name:'Toyota Yaris Cross Hybrid 1.5',fuel:'Hybrid',cons:4.7,tank:36,batt:null},
-  {id:'altis',name:'Toyota Altis 1.8 Hybrid',fuel:'Hybrid',cons:4.5,tank:43,batt:null},
-  {id:'corollacross',name:'Toyota Corolla Cross Hybrid 1.8G',fuel:'Hybrid',cons:3.7,tank:43,batt:null},
-  {id:'corollasedan',name:'Toyota Corolla Sedan Hybrid 1.8X',fuel:'Hybrid',cons:4.5,tank:43,batt:null}
+  {id:'mazda3',name:'Mazda 3 1.5L M-Hybrid',fuel:'Hybrid',cons:5.52,tank:51,batt:null,bootNormal:358,bootMax:1026},
+  {id:'fit',name:'Honda Fit Petrol 1.5A',fuel:'Petrol',cons:5.7,tank:40,batt:null,bootNormal:284,bootMax:1200},
+  {id:'freed',name:'Honda Freed e:HEV',fuel:'Hybrid',cons:3.9,tank:42,batt:null,bootNormal:120,bootMax:1000},
+  {id:'nvan',name:'Honda N-Van Fun Style',fuel:'Petrol',cons:5.3,tank:27,batt:null,bootNormal:150,bootMax:800},
+  {id:'odyssey',name:'Honda Odyssey e:HEV 2.0',fuel:'Hybrid',cons:5.0,tank:55,batt:null,bootNormal:322,bootMax:1400},
+  {id:'stepwgn',name:'Honda Stepwagon Spada e:HEV 2.0',fuel:'Hybrid',cons:4.9,tank:52,batt:null,bootNormal:300,bootMax:1500},
+  {id:'vezel-petrol',name:'Honda Vezel Petrol 1.5G',fuel:'Petrol',cons:6.9,tank:40,batt:null,bootNormal:355,bootMax:1200},
+  {id:'vezel-hybrid',name:'Honda Vezel e:HEV 1.5X',fuel:'Hybrid',cons:4.0,tank:40,batt:null,bootNormal:330,bootMax:1100},
+  {id:'wrv',name:'Honda WR-V 1.5',fuel:'Petrol',cons:6.1,tank:40,batt:null,bootNormal:460,bootMax:1200},
+  {id:'zrv',name:'Honda ZR-V e:HEV',fuel:'Hybrid',cons:4.2,tank:57,batt:null,bootNormal:470,bootMax:1400},
+  {id:'lm350h',name:'Lexus LM350h 2.5A',fuel:'Hybrid',cons:6.5,tank:60,batt:null,bootNormal:350,bootMax:1000},
+  {id:'glc300',name:'Mercedes GLC300 AMG Line',fuel:'Petrol',cons:7.5,tank:62,batt:null,bootNormal:550,bootMax:1600},
+  {id:'mg4',name:'MG 4 EV 99kW',fuel:'EV',cons:null,tank:null,batt:64,energy:16.6,bootNormal:363,bootMax:1220},
+  {id:'mg5',name:'MG 5 EV Excite',fuel:'EV',cons:null,tank:null,batt:61.1,energy:17.0,bootNormal:578,bootMax:1300},
+  {id:'mgm9',name:'MG M9 EV Trophy (7-Seater)',fuel:'EV',cons:null,tank:null,batt:90,energy:21.8,bootNormal:300,bootMax:1700},
+  {id:'mgs5-comfort',name:'MG S5 EV Comfort',fuel:'EV',cons:null,tank:null,batt:62,energy:16.9,bootNormal:450,bootMax:1100},
+  {id:'mgs5-luxury',name:'MG S5 EV Luxury',fuel:'EV',cons:null,tank:null,batt:62,energy:16.9,bootNormal:450,bootMax:1100},
+  {id:'mgzs',name:'MG ZS EV SE / Trophy',fuel:'EV',cons:null,tank:null,batt:51,energy:17.5,bootNormal:448,bootMax:1400},
+  {id:'serena',name:'Nissan Serena 1.4 e-Power',fuel:'Hybrid',cons:5.2,tank:52,batt:null,bootNormal:250,bootMax:1800},
+  {id:'landy',name:'Suzuki Landy Hybrid 1.8G',fuel:'Hybrid',cons:4.5,tank:52,batt:null,bootNormal:320,bootMax:1500},
+  {id:'alphard-petrol',name:'Toyota Alphard Petrol 2.5Z',fuel:'Petrol',cons:9.5,tank:75,batt:null,bootNormal:453,bootMax:2000},
+  {id:'alphard-hybrid',name:'Toyota Alphard Hybrid 2.5Z',fuel:'Hybrid',cons:5.1,tank:60,batt:null,bootNormal:350,bootMax:1800},
+  {id:'harrier',name:'Toyota Harrier Hybrid 2.5G',fuel:'Hybrid',cons:4.8,tank:55,batt:null,bootNormal:440,bootMax:1600},
+  {id:'noah',name:'Toyota Noah Hybrid 1.8',fuel:'Hybrid',cons:4.4,tank:52,batt:null,bootNormal:250,bootMax:1800},
+  {id:'sienta',name:'Toyota Sienta Hybrid 1.5',fuel:'Hybrid',cons:4.0,tank:40,batt:null,bootNormal:200,bootMax:1500},
+  {id:'vellfire',name:'Toyota Vellfire Hybrid 2.5Z Premier',fuel:'Hybrid',cons:4.7,tank:60,batt:null,bootNormal:450,bootMax:2100},
+  {id:'voxy',name:'Toyota Voxy Hybrid 1.8',fuel:'Hybrid',cons:4.5,tank:52,batt:null,bootNormal:250,bootMax:1800},
+  {id:'yaris',name:'Toyota Yaris Cross Hybrid 1.5',fuel:'Hybrid',cons:4.7,tank:36,batt:null,bootNormal:397,bootMax:1300},
+  {id:'altis',name:'Toyota Altis 1.8 Hybrid',fuel:'Hybrid',cons:4.5,tank:43,batt:null,bootNormal:443,bootMax:1200},
+  {id:'corollacross',name:'Toyota Corolla Cross Hybrid 1.8G',fuel:'Hybrid',cons:3.7,tank:43,batt:null,bootNormal:440,bootMax:1400},
+  {id:'corollasedan',name:'Toyota Corolla Sedan Hybrid 1.8X',fuel:'Hybrid',cons:4.5,tank:43,batt:null,bootNormal:450,bootMax:1000}
 ];
+
+
 
 
 
@@ -231,9 +233,11 @@ function renderCard(c,id){
     <p>Energy (kWh/100km): ${c.energy??'n/a'}</p>
     <p>Fuel Tank (L): ${c.tank??'n/a'}</p>
     <p>Battery (kWh): ${c.batt??'n/a'}</p>
+    <p>Boot Space Est(L): ${c.bootNormal??'n/a'} normal / ${c.bootMax??'n/a'} max</p>
     <p>km/L (or km/kWh): ${kmPerUnit(c)?kmPerUnit(c).toFixed(2):'n/a'}</p>
-    <p>Estimated Range (km): ${rangeKm(c)||'n/a'}</p>`;
+    <p>Est Range (km): ${rangeKm(c)||'n/a'}</p>`;
 }
+
 
 function doCompare(){
   const a=RMG_SPECS.find(x=>x.id===document.getElementById('rmg-car-a').value);
@@ -276,8 +280,8 @@ function getLoanReportText() {
     "10'' Android Player",
     "Reverse Sensor & Camera",
     "3M Solar Film",
-    "Leather seat",
-    "Sport Rim"
+    "Leather seat - subjected to car",
+    "Sport Rim - subjected to car"
   ];
 
   return `Loan Calculation Report
@@ -398,6 +402,17 @@ document.getElementById('whatsappBtn').onclick = async function(e) {
   const url = `https://wa.me/?text=${message}`;
   window.open(url, "_blank");
 };
+
+// Auto-calculate on input without changing your calculateMonthly logic
+(function(){
+  const autoFields = ['carPrice','tradeIn','outstandingLoan','downPayment','manualDownPayment','interestRate','loanTerm'];
+  autoFields.forEach(id => {
+    const el = document.getElementById(id);
+    if (el) el.addEventListener('input', calculateMonthly);
+  });
+  // initial run to populate values
+  try { calculateMonthly(); } catch(e){ console.log('Auto-calc init error', e); }
+})();
 </script>
 </body>
 </html>
